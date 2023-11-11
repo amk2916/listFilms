@@ -5,7 +5,10 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "users", indices = [Index("token", unique = true), Index("login", unique = true)])
+@Entity(
+    tableName = "users",
+    indices = [Index("token", unique = true), Index("login", unique = true)]
+)
 data class UserDbModel(
     @PrimaryKey(autoGenerate = true) val id: Long = -1,
     val login: String,

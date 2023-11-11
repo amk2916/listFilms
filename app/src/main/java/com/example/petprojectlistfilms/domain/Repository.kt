@@ -11,6 +11,8 @@ interface Repository {
     fun getFilmsInternet():List<Film>
     fun  getFilm(idFilm: Int): Film
 
+
+    //функциональность связанная с пользователем
     fun authorization(login: String, password: String): Int
     fun check(login: String, password: String): Boolean
     fun deleteUser(idUser: Int)

@@ -1,10 +1,13 @@
 package com.example.petprojectlistfilms.data
 
+import com.example.petprojectlistfilms.data.db.UserDao
 import com.example.petprojectlistfilms.domain.Repository
 import com.example.petprojectlistfilms.domain.model.Film
 import com.example.petprojectlistfilms.domain.model.User
 
-object RepositoryImpl : Repository {
+class RepositoryImpl(
+    private val userDao: UserDao
+) : Repository {
     override fun addFilmFromFavorites(film: Film, idUser: Int) {
         TODO("Not yet implemented")
     }

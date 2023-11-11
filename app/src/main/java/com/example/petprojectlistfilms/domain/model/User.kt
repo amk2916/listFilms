@@ -9,9 +9,10 @@ data class User(
     val id: Int,
     val login: String,
     val password: String,
-    val firstName: String?,
+    val token: String
+/*    val firstName: String?,
     val secondName: String?,
     val male: Gender,
     val age: Int,
-    val icon: String
+    val icon: String*/
 )
