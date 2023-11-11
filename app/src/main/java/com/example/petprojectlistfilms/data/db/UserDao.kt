@@ -19,7 +19,7 @@ interface UserDao {
 
     // получение токена после регистрации
     @Query("Select * from users where login = :login and password = :password")
-    fun getUser(login: String, password: String) : UserDbModel
+    fun getUser(login: String, password: String) : UserDbModel?
 
 
     //Проверка существования пользователя (для сохранения токена и входа через шаред преференс)
@@ -33,6 +33,6 @@ interface UserDao {
 
 
     //обновление данных
-    @Update(onConflict = OnConflictStrategy.REPLACE)
+    @Update(onConflict = OnConflictStrategy.REPLACE)//todo(разобраться как работает анотация)
     fun updateUser(user: UserDbModel)
 }
