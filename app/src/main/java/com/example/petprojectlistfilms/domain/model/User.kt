@@ -1,12 +1,10 @@
 package com.example.petprojectlistfilms.domain.model
 
-import com.example.petprojectlistfilms.domain.Gender
-
 /**
  * Пользователь
  */
 data class User(
-    val id: Int,
+    val id: Long,
     val login: String,
     val password: String,
     val token: String
