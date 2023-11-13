@@ -11,10 +11,14 @@ interface Repository {
     fun getFilmsInternet():List<Film>
     fun  getFilm(idFilm: Int): Film
 
-    fun authorization(login: String, password: String): Int
-    fun check(login: String, password: String): Boolean
-    fun deleteUser(idUser: Int)
+
+    //функциональность связанная с пользователем
+    fun getUser(login: String, password: String): User
+
+    fun getUser(token: String): User
+
+    fun deleteUser(token: String)
     fun editUser(user: User)
-    fun addUser(user:User)
+    fun addUser(user:User) : String
 
 }

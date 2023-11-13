@@ -1,10 +1,16 @@
 package com.example.petprojectlistfilms.data
 
+import com.example.petprojectlistfilms.data.db.UserDao
+import com.example.petprojectlistfilms.data.db.UserDbModel
+import com.example.petprojectlistfilms.domain.Mapper
 import com.example.petprojectlistfilms.domain.Repository
 import com.example.petprojectlistfilms.domain.model.Film
 import com.example.petprojectlistfilms.domain.model.User
 
-object RepositoryImpl : Repository {
+class RepositoryImpl(
+    private val userDao: UserDao,
+    private val mapper: Mapper
+) : Repository {
     override fun addFilmFromFavorites(film: Film, idUser: Int) {
         TODO("Not yet implemented")
     }
@@ -29,23 +35,32 @@ object RepositoryImpl : Repository {
         TODO("Not yet implemented")
     }
 
-    override fun authorization(login: String, password: String): Int {
-        TODO("Not yet implemented")
+
+    // логика связанная с ЛК пользователя
+    override fun getUser(login: String, password: String): User {
+        return mapper.userDbToModel(userDao.getUser(login, password))
     }
 
-    override fun check(login: String, password: String): Boolean {
-        TODO("Not yet implemented")
+    override fun getUser(token: String): User {
+        return mapper.userDbToModel(userDao.getUserByToken(token))
     }
 
-    override fun deleteUser(idUser: Int) {
-        TODO("Not yet implemented")
+    override fun deleteUser(token: String) {
+        userDao.deleteUser(token)
     }
 
     override fun editUser(user: User) {
-        TODO("Not yet implemented")
+        //val userDbModel = mapper.userModelToDb(user)
+        userDao.updateUser(mapper.userModelToDb(user))//(userDbModel.password, userDbModel.token, userDbModel.id)
     }
 
-    override fun addUser(user: User) {
-        TODO("Not yet implemented")
+    override fun addUser(user: User) : String {
+        val generateId = userDao.addUser(mapper.userModelToDb(user))
+        val newToken = "${(generateId+33)*user.login.length}${user.password.uppercase()}" +
+                       "-${(generateId+34)*user.password.length}${user.login.uppercase()}"
+
+        val newUser = user.copy(id= generateId, token = newToken)
+        editUser(newUser)
+        return newToken
     }
 }
