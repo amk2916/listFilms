@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
     indices = [Index("token", unique = true), Index("login", unique = true)]
 )
 data class UserDbModel(
-    @PrimaryKey(autoGenerate = true) val id: Long = -1,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     val login: String,
     val password: String,
     val token: String

@@ -33,6 +33,7 @@ interface UserDao {
 
 
     //обновление данных
-    @Update(onConflict = OnConflictStrategy.REPLACE)//todo(разобраться как работает анотация)
-    fun updateUser(user: UserDbModel)
+   // @Query("update users set password = :password, token = :token where id = :id")//todo(разобраться как работает анотация)
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateUser(user: UserDbModel)//(password: String, token: String, id: Long)
 }

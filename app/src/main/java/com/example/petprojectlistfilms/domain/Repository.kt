@@ -14,6 +14,9 @@ interface Repository {
 
     //функциональность связанная с пользователем
     fun getUser(login: String, password: String): User
+
+    fun getUser(token: String): User
+
     fun deleteUser(token: String)
     fun editUser(user: User)
     fun addUser(user:User) : String

@@ -8,4 +8,8 @@ class GetUserUseCase(private val repository: Repository) {
     fun check(login: String, password: String): User{
         return repository.getUser(login, password)
     }
+
+    fun check(token: String): User{
+        return repository.getUser(token)
+    }
 }

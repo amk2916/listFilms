@@ -41,12 +41,17 @@ class RepositoryImpl(
         return mapper.userDbToModel(userDao.getUser(login, password))
     }
 
+    override fun getUser(token: String): User {
+        return mapper.userDbToModel(userDao.getUserByToken(token))
+    }
+
     override fun deleteUser(token: String) {
         userDao.deleteUser(token)
     }
 
     override fun editUser(user: User) {
-        userDao.updateUser(mapper.userModelToDb(user))
+        //val userDbModel = mapper.userModelToDb(user)
+        userDao.updateUser(mapper.userModelToDb(user))//(userDbModel.password, userDbModel.token, userDbModel.id)
     }
 
     override fun addUser(user: User) : String {

@@ -4,10 +4,10 @@ package com.example.petprojectlistfilms.domain.model
  * Пользователь
  */
 data class User(
-    val id: Long,
+    val id: Long = 0,// по документации рум
     val login: String,
     val password: String,
-    val token: String
+    val token: String = ""
 /*    val firstName: String?,
     val secondName: String?,
     val male: Gender,
